@@ -10,5 +10,16 @@ describe("Message", () => {
     });
 
     expect(wrapper.classes()).toContain("success");
+    expect(wrapper.html()).toContain("Message! success");
+  });
+
+  it("validates valid variant", () => {
+    ["success", "warning", "error"].forEach((variant) => {
+      expect(() => validateVariant(variant)).not.toThrow();
+    });
+  });
+
+  it("throw an error for invalid variant", () => {
+    expect(() => validateVariant("invalid")).toThrow();
   });
 });
